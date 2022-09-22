@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Year</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th id="price-header">Price</th>
+                </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+        <button id="rerender">Rerender</button>
+
+        <input type="number" id="input-price">
+        <button id="filter-price">Filter price</button>
+
+        <input type="text" id="input-make">
+        <button id="filter-make">Filter make</button>
+    </body>
+    <script>
+        const cars = [
+            { id: 1, year: 1997, make: 'Ford', model: 'E350', price: 3000 },
+            { id: 2, year: 1999, make: 'Chevy', model: 'Venture', price: 4900 },
+            { id: 3, year: 2000, make: 'Chevy', model: 'Venture', price: 5000 },
+            { id: 4, year: 1996, make: 'Jeep', model: 'Grand Cherokee', price: 4799 },
+            { id: 5, year: 2005, make: 'Volvo', model: 'V70', price: 44799 }
+        ];
+
+        const tbodyElement = document.getElementById("tbody")
+        insertCars(cars)
+
+        const buttonRerender = document.getElementById("rerender")
+        buttonRerender.onclick = () => {
+            rerender(cars)
+        }
+
+        const buttonFilterPrice = document.getElementById("filter-price")
+        buttonFilterPrice.addEventListener("click", filterCarsByPriceLowerThan)
+
+        const buttonFilterMake = document.getElementById("filter-make")
+        buttonFilterMake.onclick = filterCarsByMake
+
+        let sortPriceAsc = true
+        const priceSortHeader = document.getElementById("price-header")
+        priceSortHeader.addEventListener("click", sortCarsByPrice)
+        
+        function insertCars(cars) {
+            cars.map(car => {
+                const row = document.createElement("tr")
+
+                const tdElementId = document.createElement("td")
+                tdElementId.innerText = car.id
+
+                const tdElementYear = document.createElement("td")
+                tdElementYear.innerText = car.year
+
+                const tdElementMake = document.createElement("td")
+                tdElementMake.innerText = car.make
+
+                const tdElementModel = document.createElement("td")
+                tdElementModel.innerText = car.model
+
+                const tdElementPrice = document.createElement("td")
+                tdElementPrice.innerText = car.price
+
+                row.appendChild(tdElementId)
+                row.appendChild(tdElementYear)
+                row.appendChild(tdElementMake)
+                row.appendChild(tdElementModel)
+                row.appendChild(tdElementPrice)
+
+                tbodyElement.appendChild(row)
+            })
+        }
+
+        function rerender(cars) {
+            tbodyElement.replaceChildren()
+
+            insertCars(cars)
+        }
+
+        function filterCarsByPriceLowerThan() {
+            const inputPrice = document.getElementById("input-price")
+            const priceToFilterBy = inputPrice.value
+
+            let carArray = cars
+
+            carArray = carArray.filter(car => {
+                return car.price < priceToFilterBy
+            })
+
+            rerender(carArray)
+        }
+
+        function filterCarsByMake() {
+            const inputMake = document.getElementById("input-make")
+            const makeToFilterBy = inputMake.value
+
+            let carArray = cars
+
+            carArray = carArray.filter(car => car.make == makeToFilterBy)
+
+            rerender(carArray)
+        }
+
+        function sortCarsByPrice() {
+            let carArray = cars
+
+            carArray = carArray.sort((car1, car2) => {
+                if (sortPriceAsc) {
+                    return sortAsc(car1.price, car2.price)
+                } else {
+                    return sortDsc(car1.price, car2.price)
+                }
+            })
+
+            sortPriceAsc = !sortPriceAsc
+            rerender(carArray)
+        }
+
+        function sortAsc(x, y) {
+            if (x < y) {
+                return -1
+            } else if (x === y) {
+                return 0
+            } else {
+                return 1
+            }
+        }
+
+        function sortDsc(x, y) {
+            if (x < y) {
+                return 1
+            } else if (x === y) {
+                return 0
+            } else {
+                return -1
+            }
+        }
+    </script>
+</html>

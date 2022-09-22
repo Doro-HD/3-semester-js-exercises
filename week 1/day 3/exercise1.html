@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Week 2 day 3 exercise 1</title>
+    </head>
+    <body>
+        <input type="number" id="user-id-input" min="1">
+        <button id="get-user">Get user with id</button>
+        <button id="get-all-users">Get all users</button>
+
+        <div id="content"></div>
+
+    </body>
+
+    <script type="module">
+        import { URL } from './fetch.js'
+        
+        const contentDiv = document.getElementById("content")
+
+        const getUserByIdButton = document.getElementById("get-user")
+        getUserByIdButton.onclick = getUserById
+
+        function getUserById() {
+            const id = document.getElementById("user-id-input").value
+
+            fetch(URL + '/' + id, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return Promise.reject("Error", response.status)
+                }
+
+                return response.json()
+            })
+            .then(data => {
+                console.log(data)
+
+                const userDisplay = `
+                    <p>Name: ${data.name}</p>
+                    <p>Phone: ${data.phone}</p>
+
+                    <h3>Adresse</h3>
+                    <p>Street: ${data.address.street}</p>
+                    <p>City: ${data.address.city}</p>
+                    <p>Zip: ${data.address.zipcode}</p>
+                    <p>Geo (lat, lng): ${data.address.geo.lat}, ${data.address.geo.lng}</p>
+                `;
+
+                contentDiv.innerHTML = userDisplay
+            })
+            .catch(e => {
+                const errorDisplay = '<h1>Error fetching</h1>'
+                contentDiv.innerHTML = errorDisplay
+            })
+        }
+
+        function getAllUsers() {
+            
+        }
+    </script>
+</html>

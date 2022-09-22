@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Week 2 day 1 exercise 1</title>
+    </head>
+    <body>
+        <h2>A</h2>
+        <div id="a">
+            <div id="div-a1" style="width: 100px;margin: 1px;">test</div>
+            <div id="div-a2" style="width: 100px;margin: 1px;">test2</div>
+            <div id="div-a3" style="width: 100px;margin: 1px;">test3</div>
+        </div>
+
+        <h2>b</h2>
+        <div id="b">
+            <div id="div-b1" style="width: 100px;margin: 1px;">test</div>
+            <div id="div-b2" style="width: 100px;margin: 1px;">test2</div>
+            <div id="div-b3" style="width: 100px;margin: 1px;">test3</div>
+        </div>
+        <button id="change-colour">Change colours of b divs</button>
+        <button id="reset">Reset</button>
+    </body>
+
+    <script>
+        const divs = document.querySelectorAll("div#a > div")
+        console.log(divs)
+
+        const changeColourButton = document.getElementById("change-colour")
+        changeColourButton.addEventListener("click", b)
+
+        const resetColourButton = document.getElementById("reset")
+        resetColourButton.onclick = bReset
+
+        for (let i in divs) {
+            const style = divs[i].style
+
+            style.backgroundColor = 'red'
+        }
+
+
+        function b() {
+            const div1Style = document.getElementById("div-b1").style
+            const div2Style = document.getElementById("div-b2").style
+            const div3Style = document.getElementById("div-b3").style
+
+            div1Style.backgroundColor = "green"
+            div2Style.backgroundColor = "red"
+            div3Style.backgroundColor = "yellow"
+        }
+
+        function bReset() {
+            const divs = document.querySelectorAll("div#b > div")
+            for (let i in divs) {
+                divs[i].style.backgroundColor = "white"
+            }
+
+        }
+    </script>
+</html>

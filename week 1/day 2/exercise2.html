@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Week 2 day 1 exercise 2</title>
+
+        <style>
+            .my-div {width: 25px; height: 25px;background-color:red; margin:1px;}
+        </style>         
+    </head>
+    <body>
+        <h2>A</h2>
+            <div id="div-a1" class="my-div">test</div>
+            <div id="div-a2" class="my-div">test</div>
+        
+        <h2>B</h2>
+        <div id="div-b-outer" class="my-div">
+            <div id="div-b1" class="my-div">test</div>
+            <div id="div-b2" class="my-div">test</div>
+            <div id="div-b3" class="my-div">test</div>
+            <div id="div-b4" class="my-div">test</div>
+            <div id="div-b5" class="my-div">test</div>
+            <div id="div-b6" class="my-div">test</div>
+            <div id="div-b7" class="my-div">test</div>
+            <div id="div-b8" class="my-div">test</div>
+            <div id="div-b9" class="my-div">test</div>
+            <div id="div-b10" class="my-div">test</div>
+        </div>
+
+        <h2>C</h2>
+        <p id="p-c1"></p>
+    </body>
+
+    <script>
+        const divA1 = document.getElementById("div-a1")
+        divA1.addEventListener("click", hiFrom)
+        const divA2 = document.getElementById("div-a2")
+        divA2.addEventListener("click", hiFrom)
+
+        const divB = document.getElementById("div-b-outer")
+        divB.addEventListener("click", hiFrom)
+
+        function hiFrom(event) {
+            const id = event.target.getAttribute("id")
+            const text = `Hi from ${id}`
+            console.log(text)
+
+            const pElement = document.getElementById("p-c1")
+            pElement.innerText = text
+        }
+    </script>
+</html>

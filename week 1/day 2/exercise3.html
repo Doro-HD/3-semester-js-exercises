@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Week 2 day 1 exercise 3</title>
+    </head>
+    <body>
+        <ul id="ul-a1"></ul>
+
+        <form id="form-b1">
+            <input type="text" id="input-b1" placeholder="Navn">
+            <button id="button-add-name">Tilføj</button>
+        </form>
+        <button id="remove-first">Fjen det første navn</button>
+        <button id="remove-last">Fjen det sidste navn</button>
+    </body>
+
+    <script>
+        const ul = document.getElementById("ul-a1")
+
+        const buttonAddName = document.getElementById("button-add-name")
+        buttonAddName.onclick = addName
+
+        const buttonRemoveFirst = document.getElementById("remove-first")
+        buttonRemoveFirst.onclick = removeFirst
+
+        const buttonRemoveLast = document.getElementById("remove-last")
+        buttonRemoveLast.onclick = removeLast
+
+        let names = ["Lars", "Peter", "Jan", "Ian"]
+        insertNames()
+        
+        function insertNames() {
+            names.map(name => {
+                const listElement = document.createElement("li")
+                listElement.innerText = name
+
+                ul.appendChild(listElement)
+            })
+        }
+
+        function addName(e) {
+            e.preventDefault()
+            const inputElement = document.getElementById("input-b1")
+            const name = inputElement.value
+
+            names.push(name)
+
+            resetUlElement()
+        }
+
+        function removeFirst() {
+            names = names.slice(1)
+            resetUlElement()
+        }
+
+        function removeLast() {
+            names.pop()
+            resetUlElement()
+        }
+
+        function resetUlElement() {
+            ul.replaceChildren()
+            insertNames()
+        }
+
+    </script>
+</html>
