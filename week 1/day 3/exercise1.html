@@ -22,6 +22,9 @@
 
         const getUserByIdButton = document.getElementById("get-user")
         getUserByIdButton.onclick = getUserById
+        
+        const getUsersButton = document.getElementById("get-all-users")
+        getUsersButton.onclick = getAllUsers
 
         function getUserById() {
             const id = document.getElementById("user-id-input").value
@@ -40,8 +43,6 @@
                 return response.json()
             })
             .then(data => {
-                console.log(data)
-
                 const userDisplay = `
                     <p>Name: ${data.name}</p>
                     <p>Phone: ${data.phone}</p>
@@ -62,7 +63,46 @@
         }
 
         function getAllUsers() {
-            
+            fetch(URL, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return Promise.reject("Error", response.status)
+                }
+
+                return response.json()
+            })
+            .then(data => {
+                const userData = data.map(user => {
+                            return `
+                                <tr>
+                                    <td>${user.name}</td>
+                                    <td>${user.phone}</td>
+                                </tr>
+                            `
+                        })
+                        //join is given an empty string as otherwise the default commas will be displayed on the top of the screen
+                        .join('')
+                const usersDisplay = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${userData}
+                    </tbody>
+                </table>
+                `
+                contentDiv.innerHTML = usersDisplay
+            })
+            .catch(e => console.error(e))
         }
     </script>
 </html>

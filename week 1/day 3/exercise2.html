@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+		<style>
+			.parent {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				grid-template-rows: 1fr 1fr;
+				gap: 1px 1px;
+			}
+			.item {
+				background-color: lightskyblue;
+				border: 1px solid #fff;
+				padding: 5px 5px 5px 2em;
+				min-height: 250px;
+			}
+		</style>
+	</head>
+	<body style="font-family: sans-serif">
+	<div style="margin-left: 10%;width: 75%;margin-right: auto">
+		<h2>Car's 'R' Us Client Demo - Version poor ;-)</h2>
+		<div class="parent">
+			<div class="item">
+				<h3>Show all Cars</h3>
+				<button id="btn-get-all">Get all</button>
+				<div id="all-cars-content"></div>
+			</div>
+			<div class="item">
+				<h3>Find a single Car</h3>
+				<label for="text-for-id">Id</label>
+				<input id="text-for-id"/>
+
+				<button id="find-by-id">Find</button>
+				<div id="car-by-id"></div>
+			</div>
+			<div class="item">
+				<h3>Add a Car</h3>
+				<div>
+					<label for="input-brand">Car brand</label>
+					<input id="input-brand"/>
+				</div>
+				
+				<div>
+					<label for="input-model">Car model</label>
+					<input id="input-model"/>
+				</div>
+
+				<div>
+					<label for="input-price-per-day">Car price per day</label>
+					<input type="number" id="input-price-per-day"/>
+				</div>
+				
+				<div>
+					<label for="input-best-discount">Car best discount</label>
+					<input type="number" id="input-best-discount"/>
+				</div>
+
+				<button id="add-new-car">Submit new item</button>
+				<div id="new-car-div"></div>
+			</div>
+			<div class="item">
+				<h3>Edit a Car</h3>
+				<label for="input-put-id">Id</label>
+				<input id="input-put-id"/>
+				<button id="find-car-to-edit-by-id">Find car to edit</button>
+				
+				<div id="edit-car-div">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+	<script src="./exercise2.js"></script>
+</html>
