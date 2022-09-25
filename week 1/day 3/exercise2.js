@@ -16,7 +16,7 @@ const buttonEditCar = document.getElementById('find-car-to-edit-by-id')
 buttonEditCar.onclick = displayEditableCarById
 
 function getAllCars() {
-	fetch('http://127.0.0.1:8080/api/cars', {
+	fetch('https://cars-r-us-davi5585.azurewebsites.net/api/cars', {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ function getAllCars() {
 }
 
 function getCarById(id) {
-	return fetch('http://127.0.0.1:8080/api/cars/' + id, {
+	return fetch('https://cars-r-us-davi5585.azurewebsites.net/api/cars' + id, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
@@ -107,7 +107,7 @@ function addNewCar() {
 	const pricePerDay = document.getElementById('input-price-per-day').value
 	const bestDiscount = document.getElementById('input-best-discount').value
 
-	fetch('http://127.0.0.1:8080/api/cars/', {
+	fetch('https://cars-r-us-davi5585.azurewebsites.net/api/cars', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -179,7 +179,7 @@ function displayEditableCarById() {
 		const pricePerDay = document.getElementById('input-put-price-per-day').value
 		const bestDiscount = document.getElementById('input-put-best-discount').value
 
-		fetch('http://127.0.0.1:8080/api/cars/', {
+		fetch('https://cars-r-us-davi5585.azurewebsites.net/api/cars', {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
