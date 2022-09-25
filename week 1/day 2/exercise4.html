@@ -55,32 +55,21 @@
         priceSortHeader.addEventListener("click", sortCarsByPrice)
         
         function insertCars(cars) {
-            cars.map(car => {
-                const row = document.createElement("tr")
+            const carRows = cars.map(car => {
+                const carRow  = `
+                    <tr>
+                        <td>${car.id}</td>
+                        <td>${car.year}</td>
+                        <td>${car.make}</td>
+                        <td>${car.model}</td>
+                        <td>${car.price}</td>
+                    </tr>
+                `
 
-                const tdElementId = document.createElement("td")
-                tdElementId.innerText = car.id
+                return carRow
+            }).join('')
 
-                const tdElementYear = document.createElement("td")
-                tdElementYear.innerText = car.year
-
-                const tdElementMake = document.createElement("td")
-                tdElementMake.innerText = car.make
-
-                const tdElementModel = document.createElement("td")
-                tdElementModel.innerText = car.model
-
-                const tdElementPrice = document.createElement("td")
-                tdElementPrice.innerText = car.price
-
-                row.appendChild(tdElementId)
-                row.appendChild(tdElementYear)
-                row.appendChild(tdElementMake)
-                row.appendChild(tdElementModel)
-                row.appendChild(tdElementPrice)
-
-                tbodyElement.appendChild(row)
-            })
+            tbodyElement.innerHTML = carRows
         }
 
         function rerender(cars) {
