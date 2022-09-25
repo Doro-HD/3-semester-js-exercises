@@ -63,7 +63,7 @@ function getAllCars() {
 }
 
 function getCarById(id) {
-	return fetch('https://cars-r-us-davi5585.azurewebsites.net/api/cars' + id, {
+	return fetch('https://cars-r-us-davi5585.azurewebsites.net/api/cars/' + id, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
